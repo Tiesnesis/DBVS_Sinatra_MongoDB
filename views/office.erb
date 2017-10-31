@@ -4,12 +4,16 @@
 <th>ID:</td>
 <th>Name:</td>
 <th>Location:</td>
+<th>Office Penalityies:</td>
+<th>Office Master:</td>
 </tr>
 <% @offices.each do |office| %>
   <tr>
     <td><%= office["id"] %></td>
     <td><%= office["Name"] %></td>
     <td><%= office["Location"] %></td>
+    <td><a href="/penalty_by_office/<%= office["id"] %>">Link</td>
+    <td><a href="/master_by_office/<%= office["id"] %>">Link</td>
   </tr>
 <% end %>
 </table>

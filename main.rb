@@ -25,6 +25,13 @@ get '/penalty/:id' do
   erb :penalties
 end
 
+get '/penalty_by_office/:id' do
+  # content_type :json
+  # settings.mongo_db.database.collection_names.to_json
+  @penalties = settings.mongo_db.database.collection('Penality').find({"office_id" => params[:id].to_i})
+  erb :penalties
+end
+
 get '/office/:id' do
   # content_type :json
   # settings.mongo_db.database.collection_names.to_json
@@ -50,6 +57,13 @@ get '/master/:id' do
   # content_type :json
   # settings.mongo_db.database.collection_names.to_json
   @masters = settings.mongo_db.database.collection('Master').find({"employee_id" => params[:id].to_i})
+  erb :master
+end
+
+get '/master_by_office/:id' do
+  # content_type :json
+  # settings.mongo_db.database.collection_names.to_json
+  @masters = settings.mongo_db.database.collection('Master').find({"office_id" => params[:id].to_i})
   erb :master
 end
 

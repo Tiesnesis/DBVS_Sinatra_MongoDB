@@ -2,6 +2,7 @@
 <table>
 <tr>
 <th>ID:</td>
+<th>Employee:</td>
 <th>Office:</td>
 <th>Master:</td>
 <th>Event:</td>
@@ -10,6 +11,7 @@
 <% @penalties.each do |penalties| %>
   <tr>
     <td><%= penalties["id"] %></td>
+    <td><a href="/employee_by_id/<%= penalties["employee_id"] %>"><%= penalties["employee_id"] %></td>
     <td><a href="/office/<%= penalties["office_id"] %>"><%= penalties["office_id"] %></td>
     <td><a href="/master_by_id/<%= penalties["master_id"] %>"><%= penalties["master_id"] %></td>
     <td><a href="/event_by_id/<%= penalties["event_id"] %>"><%= penalties["event_id"] %></td>
