@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="WorkersLU" id="Project_33527f1" template="Default" database="MongoDb" >
+	<schema name="WorkersLU" schemaname="WorkersLU" >
+		<table name="Employee" generator_rows="100" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="Name" type="string" jt="12" mandatory="y" />
+			<column name="Surname" type="string" jt="12" mandatory="y" />
+			<column name="Position" type="string" jt="12" mandatory="y" />
+			<column name="office_id" type="integer" jt="4" mandatory="y" />
+			<index name="id" unique="UNIQUE" >
+				<column name="id" />
+			</index>
+			<fk name="Fk_Employee_Master" virtual="y" to_schema="WorkersLU" to_table="Master" >
+				<fk_column name="id" pk="employee_id" />
+			</fk>
+			<fk name="fk_employee_office" virtual="y" to_schema="WorkersLU" to_table="Office" >
+				<fk_column name="office_id" pk="id" />
+			</fk>
+		</table>
+		<table name="Event" generator_rows="400" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="type" type="string" jt="12" mandatory="y" />
+			<column name="employee_id" type="integer" jt="4" mandatory="y" />
+			<column name="office_id" type="integer" jt="4" mandatory="y" />
+			<column name="event_time" type="date" jt="91" mandatory="y" >
+				<defo>sysdate</defo>
+			</column>
+			<index name="event_id" unique="UNIQUE" >
+				<column name="id" />
+			</index>
+			<fk name="fk_event_office" virtual="y" to_schema="WorkersLU" to_table="Office" >
+				<fk_column name="office_id" pk="id" />
+			</fk>
+			<fk name="fk_event_employee" virtual="y" to_schema="WorkersLU" to_table="Employee" >
+				<fk_column name="employee_id" pk="id" />
+			</fk>
+		</table>
+		<table name="Master" generator_rows="20" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="employee_id" type="integer" jt="4" mandatory="y" />
+			<column name="office_id" type="integer" jt="4" mandatory="y" />
+			<index name="master_id" unique="UNIQUE" >
+				<column name="id" />
+			</index>
+			<fk name="fk_master_office" virtual="y" to_schema="WorkersLU" to_table="Office" >
+				<fk_column name="office_id" pk="id" />
+			</fk>
+		</table>
+		<table name="Office" generator_rows="10" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="Name" type="string" jt="12" mandatory="y" />
+			<column name="Location" type="string" jt="12" mandatory="y" />
+			<index name="office_id" unique="UNIQUE" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="Penality" generator_rows="100" >
+			<column name="id" type="long" length="800" decimal="0" jt="-1" mandatory="y" />
+			<column name="employee_id" type="integer" jt="4" mandatory="y" />
+			<column name="Event_date" type="date" jt="91" mandatory="y" />
+			<column name="office_id" type="long" length="800" decimal="0" jt="-1" mandatory="y" />
+			<column name="event_id" type="long" length="800" decimal="0" jt="-1" mandatory="y" />
+			<column name="master_id" type="long" length="800" decimal="0" jt="-1" mandatory="y" />
+			<column name="_id" type="oid" length="800" decimal="0" jt="-8" mandatory="y" autoincrement="y" />
+			<index name="_id_" unique="PRIMARY_KEY" >
+				<column name="_id" />
+			</index>
+			<fk name="fk_penality_event" virtual="y" to_schema="WorkersLU" to_table="Event" >
+				<fk_column name="event_id" pk="id" />
+			</fk>
+			<fk name="fk_penality_employee" virtual="y" to_schema="WorkersLU" to_table="Employee" >
+				<fk_column name="employee_id" pk="id" />
+			</fk>
+			<fk name="fk_penality_office" virtual="y" to_schema="WorkersLU" to_table="Office" >
+				<fk_column name="office_id" pk="id" />
+			</fk>
+			<fk name="fk_penality_master" virtual="y" to_schema="WorkersLU" to_table="Master" >
+				<fk_column name="master_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<schema name="admin" catalogname="admin" />
+	<connector name="MongoDb" database="MongoDb" driver_class="com.dbschema.MongoJdbcDriver" driver_jar="mongojdbc1.2.jar" driver_desc="Password Authentication &lt;/span&gt;&lt;br&gt;&lt;b&gt;Connect using MongoDb URI using the Advanced tab/enforce custom URI. Details in Help.&lt;br&gt;Connectivity logs are available in Help/ Output Logs.&lt;/b&gt;" host="localhost" port="27017" instance="admin" user="admin" passwd="cGFzc3dvcmQ=" />
+	<connector name="MongoDb" database="MongoDb" driver_class="com.dbschema.MongoJdbcDriver" driver_jar="mongojdbc1.2.jar" driver_desc="Password Authentication &lt;/span&gt;&lt;br&gt;&lt;b&gt;Connect using MongoDb URI using the Advanced tab/enforce custom URI. Details in Help.&lt;br&gt;Connectivity logs are available in Help/ Output Logs.&lt;/b&gt;" host="localhost" port="27017" instance="admin" user="admin" passwd="cGFzc3dvcmQ=" />
+	<layout name="Default Layout" id="Layout_34d9c9b" joined_routing="y" show_column_type="y" show_page_borders="y" show_relation="columns" >
+		<entity schema="WorkersLU" name="Event" color="c1d8ee" x="45" y="270" />
+		<entity schema="WorkersLU" name="Master" color="c1d8ee" x="60" y="45" />
+		<entity schema="WorkersLU" name="Penality" color="c1d8ee" x="270" y="180" />
+		<entity schema="WorkersLU" name="Office" color="c1d8ee" x="225" y="435" />
+		<entity schema="WorkersLU" name="Employee" color="c1d8ee" x="255" y="45" />
+		<browser id="Browse_41da54c" name="Employee" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Employee" x="20" y="20" width="400" height="326" />
+		</browser>
+		<browser id="Browse_291d6af" name="Employee_001" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Employee" x="20" y="20" width="400" height="326" />
+		</browser>
+		<browser id="Browse_38addca" name="Employee_002" confirm_updates="n" >
+			<browse_table schema="WorkersLU" entity="Employee" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_201da63" name="Employee_003" confirm_updates="n" >
+			<browse_table schema="WorkersLU" entity="Employee" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_5a8f1d0" name="Employee_004" confirm_updates="n" >
+			<browse_table schema="WorkersLU" entity="Employee" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_1aafc52" name="Event" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Event" x="20" y="20" width="400" height="326" />
+		</browser>
+		<browser id="Browse_2cfa970" name="Event_001" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Event" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_3e6b0f8" name="Master" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Master" x="20" y="20" width="400" height="326" />
+		</browser>
+		<browser id="Browse_3f7a22e" name="Master_001" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Master" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_4fb2103" name="Office" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Office" x="20" y="20" width="400" height="326" />
+		</browser>
+		<browser id="Browse_20aaaf4" name="Office_001" confirm_updates="n" >
+			<browse_table schema="WorkersLU" entity="Office" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_4c3c874" name="Office_002" confirm_updates="n" >
+			<browse_table schema="WorkersLU" entity="Office" x="20" y="20" width="423" height="326" />
+		</browser>
+		<browser id="Browse_4a7f95a" name="Penality_001" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Penality" x="20" y="20" width="423" height="326" >
+				<filter on="employee_id" string=":c equals 156822184" />
+			</browse_table>
+		</browser>
+		<browser id="Browse_3203167" name="Penality_002" confirm_updates="y" >
+			<browse_table schema="WorkersLU" entity="Penality" x="20" y="20" width="423" height="326" />
+		</browser>
+	</layout>
+</project>
