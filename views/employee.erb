@@ -1,0 +1,25 @@
+
+<table>
+<tr>
+<th>ID:</td>
+<th>Name:</td>
+<th>Surname:</td>
+<th>Position:</td>
+<th>Penalties:</td>
+<th>Office:</td>
+<th>Events:</td>
+<th>Master of offices:</td>
+</tr>
+<% @employees.each do |employee| %>
+  <tr>
+    <td><%= employee["id"] %></td>
+    <td><%= employee["Name"] %></td>
+    <td><%= employee["Surname"] %></td>
+    <td><%= employee["Position"] %></td>
+    <td><a href="/penalty/<%= employee['id'] %>">Link</td>
+    <td><a href="/office/<%= employee['office_id'] %>">Link</td>
+    <td><a href="/events/<%= employee['id'] %>">Link</td>
+    <td><a href="/master/<%= employee['id'] %>">Link</td>
+  </tr>
+<% end %>
+</table>

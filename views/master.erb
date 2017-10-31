@@ -1,0 +1,15 @@
+
+<table>
+<tr>
+<th>ID:</td>
+<th>Employee:</td>
+<th>Office:</td>
+</tr>
+<% @masters.each do |master| %>
+  <tr>
+    <td><%= master["id"] %></td>
+    <td><a href="/employee_by_id/<%= master["employee_id"] %>"><%= master["employee_id"] %></td>
+    <td><a href="/office/<%= master["office_id"] %>"><%= master["office_id"] %></td>
+  </tr>
+<% end %>
+</table>

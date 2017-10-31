@@ -1,0 +1,17 @@
+
+<table>
+<tr>
+<th>ID:</td>
+<th>Type:</td>
+<th>Office:</td>
+<th>Date:</td>
+</tr>
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event["id"] %></td>
+    <td><%= event["type"] %></td>
+    <td><a href="/office/<%= event["office_id"] %>"><%= event["office_id"] %></td>
+    <td><%= event["event_time"] %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,15 @@
+
+<table>
+<tr>
+<th>ID:</td>
+<th>Name:</td>
+<th>Location:</td>
+</tr>
+<% @offices.each do |office| %>
+  <tr>
+    <td><%= office["id"] %></td>
+    <td><%= office["Name"] %></td>
+    <td><%= office["Location"] %></td>
+  </tr>
+<% end %>
+</table>
